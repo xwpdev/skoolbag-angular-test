@@ -5,7 +5,11 @@ import { FilterPipe } from './pipes/filter.pipe';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 
 import { HeaderComponent } from './components/header/header.component';
 import { SchoolDetailComponent } from './components/school-detail/school-detail.component';
@@ -23,7 +27,10 @@ import { AddSchoolComponent } from './modal/add-school/add-school.component';
   imports: [
     BrowserModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [SchoolService],
   bootstrap: [AppComponent]
