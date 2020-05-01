@@ -6,17 +6,22 @@
                 <input type="text" class="form-control" placeholder="Search by Name or Address" [(ngModel)]="searchText"
                     aria-label="Search Keywords">
                 <div class="input-group-append">
-                    <button class="btn btn-danger" type="button" (click)="OpenAddModal()"> Add New School</button>
+                    <button class="btn btn-info" type="button" (click)="OpenAddModal()"> Add New School</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="my-3 bg-white rounded box-shadow">
+
+            <div class="my-3 bg-white rounded box-shadow" *ngIf="SchoolList.length > 0">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Available Schools</h6>
                 <app-school-detail *ngFor="let school of SchoolList | filter : searchText" [school]="school">
                 </app-school-detail>
+            </div>
+            <div class="alert alert-warning" role="alert" *ngIf="SchoolList.length === 0">
+                <span *ngIf="IsLoading">Loading...</span>
+                <span *ngIf="!IsLoading">No Schools Available.</span>
             </div>
         </div>
     </div>

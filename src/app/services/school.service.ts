@@ -1,25 +1,31 @@
 import { Injectable } from "@angular/core";
+
+import { AngularFirestore } from '@angular/fire/firestore';
+
 import { School } from '../models/school';
 import { Address } from '../models/address';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SchoolService {
     private schoolList = new Array<School>();
-    constructor() {
-        this.generateDummyData();
-    }
-
-    generateDummyData() {
-        this.schoolList.push(new School("St Joseph's Primary School", new Address("26-36 Leopard Street", "Kangaroo Point", "4169", "QLD"), 50));
-        this.schoolList.push(new School("Brisbane Grammar School", new Address("24 Gregory Terrace", "Brisbane", "4000", "QLD"), 60));
-        this.schoolList.push(new School("Wahroonga Adventist School", new Address("181 Fox Valley Road", "Wahroonga", "2076", "NSW"), 20));
-    }
+    constructor(private firestore: AngularFirestore) { }
 
     addSchool(newSchool: School) {
-        this.schoolList.push(newSchool)
+        const school = {
+            name: newSchool.name,
+            studentCount: newSchool.studentCount,
+            address: {
+                street: newSchool.address.street,
+                suburb: newSchool.address.suburb,
+                postcode: newSchool.address.postcode,
+                state: newSchool.address.state,
+            }
+        };
+        return this.firestore.collection('schools').add(school);
     }
 
-    getSchools() {
-        return this.schoolList;
-    }
+    getSchools(): Observable<any> {
+        return this.firestore.collection('schools').snapshotChanges();
+    }    
 }

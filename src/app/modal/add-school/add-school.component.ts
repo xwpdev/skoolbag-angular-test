@@ -43,12 +43,9 @@ export class AddSchoolComponent implements OnInit {
       ),
       this.AddSchoolForm.value["control_studentCount"]
     );
-
     this.schoolService.addSchool(newSchool);
-
-    // clear form
+    
     this.AddSchoolForm.reset();
-    // close modal
     this.activeModal.close();
   }
 }

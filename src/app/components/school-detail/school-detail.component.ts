@@ -19,7 +19,7 @@ export class SchoolDetailComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  GetAddress(address: Address) {    
-    return `${address.street}, ${address.suburb}, ${address.postcode} ${address.state}`;
+  GetAddress(address: Address) {
+    return address && `${address.street}, ${address.suburb}, ${address.postcode} ${address.state}`;
   }
 }
