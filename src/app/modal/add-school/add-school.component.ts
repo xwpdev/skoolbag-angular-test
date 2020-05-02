@@ -34,15 +34,17 @@ export class AddSchoolComponent implements OnInit {
   }
 
   AddSchool() {
-    let newSchool = new School(
-      this.AddSchoolForm.value["control_schoolName"], new Address(
-        this.AddSchoolForm.value["control_addressStreet"],
-        this.AddSchoolForm.value["control_addressSuburb"],
-        this.AddSchoolForm.value["control_addressPostalcode"],
-        this.AddSchoolForm.value["control_addressState"]
-      ),
-      this.AddSchoolForm.value["control_studentCount"]
-    );
+    let newSchool: School = {
+      name: this.AddSchoolForm.value["control_schoolName"],
+      studentCount: this.AddSchoolForm.value["control_studentCount"],
+      address: {
+        street: this.AddSchoolForm.value["control_addressStreet"],
+        suburb: this.AddSchoolForm.value["control_addressSuburb"],
+        state: this.AddSchoolForm.value["control_addressState"],
+        postcode: this.AddSchoolForm.value["control_addressPostalcode"],
+      }
+    }
+
     this.schoolService.addSchool(newSchool);
 
     this.AddSchoolForm.reset();

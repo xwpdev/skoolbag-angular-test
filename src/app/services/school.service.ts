@@ -10,18 +10,7 @@ export class SchoolService {
     constructor(private firestore: AngularFirestore) { }
 
     addSchool(newSchool: School) {
-        // creating JS object from TS model to be compatible with Firebase
-        const school = {
-            name: newSchool.name,
-            studentCount: newSchool.studentCount,
-            address: {
-                street: newSchool.address.street,
-                suburb: newSchool.address.suburb,
-                postcode: newSchool.address.postcode,
-                state: newSchool.address.state,
-            }
-        };
-        return this.firestore.collection('schools').add(school);
+        return this.firestore.collection('schools').add(newSchool);
     }
 
     getSchools(): Observable<any> {

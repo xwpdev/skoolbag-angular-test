@@ -29,8 +29,7 @@ export class AppComponent {
     this.schoolService.getSchools().subscribe(data => {
       this.schoolList = [...data.map(e => {
         this.isLoading = false;
-        const d = e.payload.doc.data();
-        return new School(d["name"], d["address"], d["studentCount"]);
+        return e.payload.doc.data();
       })];
     });
   }
