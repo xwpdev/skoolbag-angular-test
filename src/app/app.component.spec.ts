@@ -1,7 +1,10 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -27,5 +30,14 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('a.navbar-brand').textContent).toContain('Smart School Search');
+  });
+
+  fit('should call OpenAddModal method when Add School is clicked', () => {
+    spyOn(component, 'OpenAddModal');
+
+    const element = fixture.nativeElement.querySelector('#btnAddSchool');
+    element.click();
+
+    expect(component.OpenAddModal).toHaveBeenCalledTimes(1);
   });
 });

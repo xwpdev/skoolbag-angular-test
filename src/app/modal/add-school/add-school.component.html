@@ -22,7 +22,7 @@
                                 formControlName="control_schoolName">
                         </div>
                         <span class="text-danger"
-                            *ngIf="AddSchoolForm.controls.control_schoolName.dirty && AddSchoolForm.controls.control_schoolName.errors">
+                            *ngIf="AddSchoolForm.controls.control_schoolName.dirty && AddSchoolForm.controls.control_schoolName.hasError('required')">
                             School Name Required</span>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                                 formControlName="control_addressStreet">
                         </div>
                         <span class="text-danger"
-                            *ngIf="AddSchoolForm.controls.control_addressStreet.dirty && AddSchoolForm.controls.control_addressStreet.errors">
+                            *ngIf="AddSchoolForm.controls.control_addressStreet.dirty && AddSchoolForm.controls.control_addressStreet.hasError('required')">
                             School Address Street Required</span>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                                 formControlName="control_addressSuburb">
                         </div>
                         <span class="text-danger"
-                            *ngIf="AddSchoolForm.controls.control_addressSuburb.dirty && AddSchoolForm.controls.control_addressSuburb.errors">
+                            *ngIf="AddSchoolForm.controls.control_addressSuburb.dirty && AddSchoolForm.controls.control_addressSuburb.hasError('required')">
                             School Address Suburb Required</span>
                     </div>
 
@@ -77,7 +77,7 @@
                                 formControlName="control_addressState">
                         </div>
                         <span class="text-danger"
-                            *ngIf="AddSchoolForm.controls.control_addressState.dirty && AddSchoolForm.controls.control_addressState.errors">
+                            *ngIf="AddSchoolForm.controls.control_addressState.dirty && AddSchoolForm.controls.control_addressState.hasError('required')">
                             School Address State Required</span>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                                 formControlName="control_addressPostalcode">
                         </div>
                         <span class="text-danger"
-                            *ngIf="AddSchoolForm.controls.control_addressPostalcode.dirty && AddSchoolForm.controls.control_addressPostalcode.errors">
+                            *ngIf="AddSchoolForm.controls.control_addressPostalcode.dirty && AddSchoolForm.controls.control_addressPostalcode.hasError('required')">
                             School Address Postal Code Required</span>
                     </div>
                 </div>
@@ -115,10 +115,10 @@
                                 formControlName="control_studentCount">
                         </div>
                         <span class="text-danger"
-                            *ngIf="AddSchoolForm.controls.control_studentCount.dirty && AddSchoolForm.controls.control_studentCount.errors.required">
+                            *ngIf="AddSchoolForm.controls.control_studentCount.dirty && AddSchoolForm.controls.control_studentCount.hasError('required')">
                             Number of Students Required</span>
                         <span class="text-danger"
-                            *ngIf="AddSchoolForm.controls.control_studentCount.dirty && AddSchoolForm.controls.control_studentCount.errors.min">
+                            *ngIf="AddSchoolForm.controls.control_studentCount.dirty && AddSchoolForm.controls.control_studentCount.hasError('min')">
                             Invalid Number</span>
                     </div>
                 </div>
