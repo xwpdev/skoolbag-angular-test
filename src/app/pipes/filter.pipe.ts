@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
         if (!searchText) { return items; }
 
         searchText = searchText.toLowerCase();
-
+        // custom search filter pipe to search in both name and address
         return items.filter(item => {
             if (item && (item.name || item.address)) {
                 return item.name.toLowerCase().includes(searchText)

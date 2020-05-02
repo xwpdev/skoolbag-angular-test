@@ -1,44 +1,134 @@
 <!-- Add New Modal -->
-<div class="modal-header">
-    <h4 class="modal-title">Add New School</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-    </button>
+<div class="add-school-modal">
+    <div class="modal-header">
+        <h4 class="modal-title">Add New School</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="AddSchoolForm">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <h4>School Name</h4>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="schoolName"
+                                formControlName="control_schoolName">
+                        </div>
+                        <span class="text-danger"
+                            *ngIf="AddSchoolForm.controls.control_schoolName.dirty && AddSchoolForm.controls.control_schoolName.errors">
+                            School Name Required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <h4>Address</h4>
+                    <div class="form-group">
+                        <label for="schoolAddressStreet">Street</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="schoolAddressStreet"
+                                formControlName="control_addressStreet">
+                        </div>
+                        <span class="text-danger"
+                            *ngIf="AddSchoolForm.controls.control_addressStreet.dirty && AddSchoolForm.controls.control_addressStreet.errors">
+                            School Address Street Required</span>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="schoolAddressSuburb">Suburb</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-city"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="schoolAddressSuburb"
+                                formControlName="control_addressSuburb">
+                        </div>
+                        <span class="text-danger"
+                            *ngIf="AddSchoolForm.controls.control_addressSuburb.dirty && AddSchoolForm.controls.control_addressSuburb.errors">
+                            School Address Suburb Required</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="schoolAddressState">State</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-city"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="schoolAddressState"
+                                formControlName="control_addressState">
+                        </div>
+                        <span class="text-danger"
+                            *ngIf="AddSchoolForm.controls.control_addressState.dirty && AddSchoolForm.controls.control_addressState.errors">
+                            School Address State Required</span>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="schoolAddressPostalCode">Postal Code</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="schoolAddressPostalCode"
+                                formControlName="control_addressPostalcode">
+                        </div>
+                        <span class="text-danger"
+                            *ngIf="AddSchoolForm.controls.control_addressPostalcode.dirty && AddSchoolForm.controls.control_addressPostalcode.errors">
+                            School Address Postal Code Required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="schoolStudentCount">Number of Students</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <input type="number" min="0" step="1" class="form-control" id="schoolStudentCount"
+                                formControlName="control_studentCount">
+                        </div>
+                        <span class="text-danger"
+                            *ngIf="AddSchoolForm.controls.control_studentCount.dirty && AddSchoolForm.controls.control_studentCount.errors.required">
+                            Number of Students Required</span>
+                        <span class="text-danger"
+                            *ngIf="AddSchoolForm.controls.control_studentCount.dirty && AddSchoolForm.controls.control_studentCount.errors.min">
+                            Invalid Number</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="AddSchoolForm.invalid"
+                (click)="AddSchool()">Save</button>
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </form>
 </div>
-<form [formGroup]="AddSchoolForm">
-    <div class="modal-body">
-        <div class="form-group">
-            <label for="schoolName">School Name</label>
-            <input type="text" class="form-control" id="schoolName" formControlName="control_schoolName">
-        </div>
-
-        <label>Address</label>
-        <div class="form-group">
-            <label for="schoolAddressStreet">Street</label>
-            <input type="text" class="form-control" id="schoolAddressStreet" formControlName="control_addressStreet">
-        </div>
-        <div class="form-group">
-            <label for="schoolAddressSuburb">Suburb</label>
-            <input type="text" class="form-control" id="schoolAddressSuburb" formControlName="control_addressSuburb">
-        </div>
-        <div class="form-group">
-            <label for="schoolAddressPostalCode">Postal Code</label>
-            <input type="text" class="form-control" id="schoolAddressPostalCode"
-                formControlName="control_addressPostalcode">
-        </div>
-        <div class="form-group">
-            <label for="schoolAddressState">State</label>
-            <input type="text" class="form-control" id="schoolAddressState" formControlName="control_addressState">
-        </div>
-
-        <div class="form-group">
-            <label for="schoolStudentCount">Number of Students</label>
-            <input type="number" min="0" step="1" class="form-control" id="schoolStudentCount"
-                formControlName="control_studentCount">
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" (click)="AddSchool()">Save</button>
-        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div>
-</form>

@@ -38,6 +38,11 @@ export class AppComponent {
   constructor(private schoolService: SchoolService, private modalService: NgbModal) { }
 
   OpenAddModal() {
-    this.modalService.open(AddSchoolComponent);
+    this.modalService.open(AddSchoolComponent, {
+      size: 'lg',
+      windowClass: 'view-modal',
+      backdrop: 'static',
+      centered: false
+    });
   }
 }

@@ -20,6 +20,7 @@ export class SchoolDetailComponent implements OnInit {
   }
 
   GetAddress(address: Address) {
+    // returns address as a one-line string
     return address && `${address.street}, ${address.suburb}, ${address.postcode} ${address.state}`;
   }
 }

@@ -3,15 +3,14 @@ import { Injectable } from "@angular/core";
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { School } from '../models/school';
-import { Address } from '../models/address';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class SchoolService {
-    private schoolList = new Array<School>();
     constructor(private firestore: AngularFirestore) { }
 
     addSchool(newSchool: School) {
+        // creating JS object from TS model to be compatible with Firebase
         const school = {
             name: newSchool.name,
             studentCount: newSchool.studentCount,
@@ -27,5 +26,5 @@ export class SchoolService {
 
     getSchools(): Observable<any> {
         return this.firestore.collection('schools').snapshotChanges();
-    }    
+    }
 }

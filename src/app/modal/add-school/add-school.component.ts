@@ -12,12 +12,12 @@ import { SchoolService } from 'src/app/services/school.service';
 })
 export class AddSchoolComponent implements OnInit {
 
-  control_schoolName: FormControl = new FormControl('');
-  control_addressStreet: FormControl = new FormControl('');
-  control_addressSuburb: FormControl = new FormControl('');
-  control_addressPostalcode: FormControl = new FormControl('');
-  control_addressState: FormControl = new FormControl('');
-  control_studentCount: FormControl = new FormControl('');
+  control_schoolName: FormControl = new FormControl('', [Validators.required]);
+  control_addressStreet: FormControl = new FormControl('', [Validators.required]);
+  control_addressSuburb: FormControl = new FormControl('', [Validators.required]);
+  control_addressPostalcode: FormControl = new FormControl('', [Validators.required]);
+  control_addressState: FormControl = new FormControl('', [Validators.required]);
+  control_studentCount: FormControl = new FormControl('', [Validators.required, Validators.min(0)]);
 
   AddSchoolForm = new FormGroup({
     control_schoolName: this.control_schoolName,
@@ -44,7 +44,7 @@ export class AddSchoolComponent implements OnInit {
       this.AddSchoolForm.value["control_studentCount"]
     );
     this.schoolService.addSchool(newSchool);
-    
+
     this.AddSchoolForm.reset();
     this.activeModal.close();
   }
