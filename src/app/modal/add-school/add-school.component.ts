@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { School } from 'src/app/models/school';
-import { Address } from 'src/app/models/address';
 import { SchoolService } from 'src/app/services/school.service';
 
 @Component({
